@@ -4,6 +4,9 @@ import { AlertCircle, CheckCircle, XCircle, InfoIcon, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Sidebar from "./components/common/Sidebar";
 import OverviewPage from "./pages/OverviewPage";
+import ChatbotEventPlanningPage from "./pages/ChatbotEventPlanningPage";
+import ImageProcessingPage from "./pages/ImageProcessingPage";
+import { EventDataProvider } from "./context/EventDataContext";
 
 
 // Create Alert Context
@@ -226,67 +229,70 @@ function App() {
 
   return (
     <AlertProvider>
-      <div className="flex h-screen bg-[#0f0a1e] text-gray-100 overflow-hidden">
-        <AnimatePresence>
-          {showAnimation ? (
-            <motion.div
-              key="splash"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center justify-center w-full h-full bg-[#0f0a1e] text-gray-200"
-            >
-              <div className="text-center">
-                {/* Logo */}
-                <motion.img
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                  src="xeconclave.png" // Replace with your logo path
-                  alt="Program Logo"
-                  className="w-100 h-48 mx-auto mb-5"
-                />
-                {/* Glowing Text */}
-                <motion.h1
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.6, duration: 0.8 }}
-                  className="text-5xl font-semibold mb-7 text-white"
-                >
-                  DecisionAI
-                </motion.h1>
-                <motion.h2
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.9, duration: 0.8 }}
-                  className="text-2xl font-semibold text-violet-300"
-                >
-                  GenAI-Powered Product Decision & Trade-off Intelligence System
-                </motion.h2>
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="main-content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="flex w-full"
-            >
-              {/* Sidebar */}
-              <Sidebar />
+      <EventDataProvider>
+        <div className="flex h-screen bg-[#0f0a1e] text-gray-100 overflow-hidden">
+          <AnimatePresence>
+            {showAnimation ? (
+              <motion.div
+                key="splash"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center justify-center w-full h-full bg-[#0f0a1e] text-gray-200"
+              >
+                <div className="text-center">
+                  {/* Logo */}
+                  <motion.img
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                    src="xeconclave.png" // Replace with your logo path
+                    alt="Program Logo"
+                    className="w-70 h-34 mx-auto mb-5"
+                  />
+                  {/* Glowing Text */}
+                  <motion.h1
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 0.8 }}
+                    className="text-5xl font-semibold mb-7 text-white"
+                  >
+                    DecisionAI
+                  </motion.h1>
+                  <motion.h2
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.9, duration: 0.8 }}
+                    className="text-2xl font-semibold text-violet-300"
+                  >
+                    GenAI-Powered Product Decision & Trade-off Intelligence System
+                  </motion.h2>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="main-content"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="flex w-full"
+              >
+                {/* Sidebar */}
+                <Sidebar />
 
-              {/* Main Content */}
-              <div className="flex-1 p-6 overflow-y-auto">
-                <Routes>
-                  <Route path="/" element={<OverviewPage />} />
-
-                </Routes>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+                {/* Main Content */}
+                <div className="flex-1 p-6 overflow-y-auto">
+                  <Routes>
+                    <Route path="/" element={<OverviewPage />} />
+                    <Route path="/chatbot-planning" element={<ChatbotEventPlanningPage />} />
+                    <Route path="/image-processing" element={<ImageProcessingPage />} />
+                  </Routes>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </EventDataProvider>
     </AlertProvider>
   );
 }
