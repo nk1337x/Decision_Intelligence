@@ -3,6 +3,7 @@ import {
   Menu,
   MessageCircle,
   Image,
+  Maximize2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -44,6 +45,12 @@ const SIDEBAR_ITEMS = [
     icon: Image,
     color: "#EC4899",
     href: "/image-processing",
+  },
+  {
+    name: "360° Visualization",
+    icon: Maximize2,
+    color: "#10B981",
+    href: "/venue-visualization",
   },
 ];
 
