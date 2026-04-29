@@ -1,0 +1,26 @@
+import express from 'express';
+import multer from 'multer';
+import { generateLayouts } from '../controllers/imageProcessingController.js';
+
+const router = express.Router();
+
+// Configure multer for memory storage
+const storage = multer.memoryStorage();
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 10 * 1024 * 1024, // 10MB limit
+  },
+  fileFilter: (req, file, cb) => {
+    // Accept images only
+    if (!file.mimetype.startsWith('image/')) {
+      return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+  }
+});
+
+// POST /api/image-processing/generate-layouts
+router.post('/generate-layouts', upload.single('image'), generateLayouts);
+
+export default router;
