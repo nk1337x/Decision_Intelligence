@@ -19,14 +19,14 @@ import TradeoffImpactChart from "../components/overview/AlertSourcesChart";
 
 const OverviewPage = () => {
   const stats = [
-    { name: "Decision Sessions", value: 128, icon: Activity, color: "violet", bgColor: "bg-violet-950/40", border: "border-violet-800/40" },
-    { name: "Options Evaluated", value: 512, icon: Layers, color: "purple", bgColor: "bg-purple-950/40", border: "border-purple-800/40" },
-    { name: "Trade-offs Documented", value: 340, icon: GitCompare, color: "indigo", bgColor: "bg-indigo-950/40", border: "border-indigo-800/40" },
+    { name: "Decision Sessions", value: 12, icon: Activity, color: "violet", bgColor: "bg-violet-950/40", border: "border-violet-800/40" },
+    { name: "Options Evaluated", value: 18, icon: Layers, color: "purple", bgColor: "bg-purple-950/40", border: "border-purple-800/40" },
+    { name: "Trade-offs Documented", value: 15, icon: GitCompare, color: "indigo", bgColor: "bg-indigo-950/40", border: "border-indigo-800/40" },
     { name: "Avg. Decision Score", value: "87%", icon: TrendingUp, color: "violet", bgColor: "bg-violet-900/30", border: "border-violet-600/40" },
-    { name: "High-Priority Decisions", value: 14, icon: AlertTriangle, color: "red", bgColor: "bg-red-950/30", border: "border-red-700/40" },
-    { name: "Approved Decisions", value: 98, icon: CheckCircle, color: "violet", bgColor: "bg-violet-900/30", border: "border-violet-600/40" },
-    { name: "Pending Review", value: 7, icon: Clock, color: "purple", bgColor: "bg-purple-950/40", border: "border-purple-800/40" },
-    { name: "Constraints Flagged", value: 23, icon: XCircle, color: "red", bgColor: "bg-red-950/30", border: "border-red-700/40" },
+    { name: "High-Priority Decisions", value: 3, icon: AlertTriangle, color: "red", bgColor: "bg-red-950/30", border: "border-red-700/40" },
+    { name: "Approved Decisions", value: 9, icon: CheckCircle, color: "violet", bgColor: "bg-violet-900/30", border: "border-violet-600/40" },
+    { name: "Pending Review", value: 2, icon: Clock, color: "purple", bgColor: "bg-purple-950/40", border: "border-purple-800/40" },
+    { name: "Constraints Flagged", value: 5, icon: XCircle, color: "red", bgColor: "bg-red-950/30", border: "border-red-700/40" },
   ];
 
   return (
