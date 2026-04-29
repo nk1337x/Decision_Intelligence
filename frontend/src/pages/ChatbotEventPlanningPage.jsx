@@ -83,7 +83,7 @@ function ChatBotWindow() {
     setTimeout(() => {
       addMessage(
         "bot",
-        "Let's start! What type of event are you planning? (e.g., tech fest, Birthday Party, Wedding, Corporate Event)",
+        "Let's start! What type of event are you planning? (e.g., tech fest, Birthday Party, Wedding, Hackathons)",
         true
       );
     }, 4000);

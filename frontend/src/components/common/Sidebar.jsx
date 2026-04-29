@@ -40,7 +40,7 @@ const SIDEBAR_ITEMS = [
     href: "/chatbot-planning",
   },
   {
-    name: "Image Processing",
+    name: "Venue Designer",
     icon: Image,
     color: "#EC4899",
     href: "/image-processing",
