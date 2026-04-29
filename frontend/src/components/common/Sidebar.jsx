@@ -1,6 +1,8 @@
 import {
   BarChart2,
   Menu,
+  MessageCircle,
+  Image,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -30,6 +32,18 @@ const SIDEBAR_ITEMS = [
     icon: BarChart2,
     color: "#3B82F6",
     href: "/",
+  },
+  {
+    name: "AI Chat Assistant",
+    icon: MessageCircle,
+    color: "#A855F7",
+    href: "/chatbot-planning",
+  },
+  {
+    name: "Image Processing",
+    icon: Image,
+    color: "#EC4899",
+    href: "/image-processing",
   },
 ];
 
