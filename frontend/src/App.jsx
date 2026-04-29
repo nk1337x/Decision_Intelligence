@@ -6,6 +6,7 @@ import Sidebar from "./components/common/Sidebar";
 import OverviewPage from "./pages/OverviewPage";
 import ChatbotEventPlanningPage from "./pages/ChatbotEventPlanningPage";
 import ImageProcessingPage from "./pages/ImageProcessingPage";
+import VenueVisualizationPage from "./pages/VenueVisualizationPage";
 import { EventDataProvider } from "./context/EventDataContext";
 
 
@@ -286,6 +287,7 @@ function App() {
                     <Route path="/" element={<OverviewPage />} />
                     <Route path="/chatbot-planning" element={<ChatbotEventPlanningPage />} />
                     <Route path="/image-processing" element={<ImageProcessingPage />} />
+                    <Route path="/venue-visualization" element={<VenueVisualizationPage />} />
                   </Routes>
                 </div>
               </motion.div>
