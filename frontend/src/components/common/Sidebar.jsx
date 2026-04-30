@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Logo = () => {
   return (
@@ -56,11 +56,13 @@ const SIDEBAR_ITEMS = [
 
 const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [activeItem, setActiveItem] = useState("/");
+  const location = useLocation();
+  const [activeItem, setActiveItem] = useState(location.pathname);
 
+  // Update active item whenever the route changes
   useEffect(() => {
-    setActiveItem(window.location.pathname);
-  }, []);
+    setActiveItem(location.pathname);
+  }, [location.pathname]);
 
   return (
     <motion.div

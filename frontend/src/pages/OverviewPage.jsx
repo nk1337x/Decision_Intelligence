@@ -8,8 +8,6 @@ import {
   CheckCircle,
   Clock,
   XCircle,
-  Plus,
-  BarChart2,
 } from "lucide-react";
 
 import Header from "../components/common/Header";
@@ -34,22 +32,6 @@ const OverviewPage = () => {
       <Header title="DecisionAI Dashboard" />
 
       <main className="max-w-7xl mx-auto py-6 px-4 lg:px-8">
-        {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-6 flex gap-4"
-        >
-          <button className="bg-violet-600 hover:bg-violet-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-all font-medium shadow-lg shadow-violet-900/40">
-            <Plus className="w-5 h-5" />
-            New Decision Session
-          </button>
-          <button className="bg-[#1a1035] hover:bg-violet-950/60 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-all border border-violet-800/50 font-medium">
-            <BarChart2 className="w-5 h-5" />
-            View Trade-offs
-          </button>
-        </motion.div>
-
         {/* Stats Grid */}
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
           {stats.map((stat, index) => (

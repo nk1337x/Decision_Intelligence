@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Award,
   AlertCircle,
@@ -57,6 +57,18 @@ export default function EventPlanningVisualization({ analysisResult }) {
   const [activeTab, setActiveTab] = useState("overview");
   const [selectedOption, setSelectedOption] = useState(0);
   const navigate = useNavigate();
+
+  // Prevent scroll restoration on tab change
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    return () => {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'auto';
+      }
+    };
+  }, []);
 
   if (!analysisResult) return null;
 
@@ -128,14 +140,11 @@ export default function EventPlanningVisualization({ analysisResult }) {
       </div>
 
       {/* Tab Navigation */}
-      <div className="flex justify-center gap-4 flex-wrap">
+      <div className="flex justify-center gap-4 flex-wrap py-4">
         <button
           type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setActiveTab("overview");
-          }}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => setActiveTab("overview")}
           className={`px-6 py-3 rounded-lg font-semibold transition-all flex items-center gap-2 ${
             activeTab === "overview"
               ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg"
@@ -147,11 +156,8 @@ export default function EventPlanningVisualization({ analysisResult }) {
         </button>
         <button
           type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setActiveTab("charts");
-          }}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => setActiveTab("charts")}
           className={`px-6 py-3 rounded-lg font-semibold transition-all flex items-center gap-2 ${
             activeTab === "charts"
               ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg"
@@ -163,11 +169,8 @@ export default function EventPlanningVisualization({ analysisResult }) {
         </button>
         <button
           type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setActiveTab("comparison");
-          }}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => setActiveTab("comparison")}
           className={`px-6 py-3 rounded-lg font-semibold transition-all flex items-center gap-2 ${
             activeTab === "comparison"
               ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg"
@@ -250,11 +253,8 @@ export default function EventPlanningVisualization({ analysisResult }) {
                       ? "border-violet-500 shadow-lg shadow-violet-500/20"
                       : "border-gray-700 hover:border-gray-600"
                   }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setSelectedOption(index);
-                  }}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => setSelectedOption(index)}
                 >
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-bold text-white">{option.name}</h3>
@@ -327,11 +327,8 @@ export default function EventPlanningVisualization({ analysisResult }) {
                 <button
                   key={index}
                   type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    setSelectedOption(index);
-                  }}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => setSelectedOption(index)}
                   className={`px-4 py-2 rounded-lg font-semibold transition-all ${
                     selectedOption === index
                       ? "bg-gradient-to-r from-violet-500 to-purple-600 text-white"
@@ -523,29 +520,14 @@ export default function EventPlanningVisualization({ analysisResult }) {
       <div className="mt-8 text-center space-y-4">
         <button
           type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Navigating to image processing...');
-            window.location.href = '/image-processing';
-          }}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => navigate('/image-processing')}
           className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105 cursor-pointer"
         >
           <Image size={24} />
           <span>Visualize with Venue Image</span>
           <ArrowRight size={20} />
         </button>
-        
-        {/* Alternative Link-based navigation */}
-        <div>
-          <Link
-            to="/image-processing"
-            className="inline-flex items-center gap-2 text-violet-400 hover:text-violet-300 text-sm underline"
-          >
-            Or click here to go to Image Processing
-            <ArrowRight size={16} />
-          </Link>
-        </div>
         
         <p className="text-gray-400 text-sm">
           Upload your venue image to generate optimized layout variations
