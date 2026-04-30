@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Maximize2, Minimize2, RotateCw, ArrowLeft, ArrowRight, Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,9 +12,6 @@ function VenueVisualizationPage() {
   // Before and After skybox IDs
   const beforeSkyboxId = "2e2acaa95b6c3148dcde2015f2caee01"; // Hall before event management
   const afterSkyboxId = "526844dc32b2f1d3f42ecddec8cdf9ed"; // Hall after event setup
-  
-  const currentSkyboxId = showAfter ? afterSkyboxId : beforeSkyboxId;
-  const skyboxUrl = `https://skybox.blockadelabs.com/e/${currentSkyboxId}`;
 
   // Listen for fullscreen changes (e.g., when user presses ESC)
   useEffect(() => {
@@ -141,22 +138,28 @@ function VenueVisualizationPage() {
           </motion.button>
         </div>
 
-        {/* 360° Skybox Iframe with Transition */}
-        <AnimatePresence mode="wait">
-          <motion.iframe
-            key={currentSkyboxId}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            src={skyboxUrl}
-            className="w-full h-full border-0"
-            style={{ minHeight: isFullscreen ? '100vh' : '600px' }}
+        {/* 360° Skybox Iframes - Both preloaded, toggle visibility */}
+        <div className="relative w-full h-full" style={{ minHeight: isFullscreen ? '100vh' : '600px' }}>
+          {/* Before Setup Iframe */}
+          <iframe
+            src={`https://skybox.blockadelabs.com/e/${beforeSkyboxId}`}
+            className="absolute inset-0 w-full h-full border-0 transition-opacity duration-500"
+            style={{ opacity: showAfter ? 0 : 1, pointerEvents: showAfter ? 'none' : 'auto' }}
             allow="fullscreen; xr-spatial-tracking; gyroscope; accelerometer"
             allowFullScreen
-            title="360° Venue View"
+            title="360° Venue View - Before"
           />
-        </AnimatePresence>
+          
+          {/* After Setup Iframe */}
+          <iframe
+            src={`https://skybox.blockadelabs.com/e/${afterSkyboxId}`}
+            className="absolute inset-0 w-full h-full border-0 transition-opacity duration-500"
+            style={{ opacity: showAfter ? 1 : 0, pointerEvents: showAfter ? 'auto' : 'none' }}
+            allow="fullscreen; xr-spatial-tracking; gyroscope; accelerometer"
+            allowFullScreen
+            title="360° Venue View - After"
+          />
+        </div>
       </motion.div>
 
       {/* Information Cards */}
